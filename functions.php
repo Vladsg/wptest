@@ -13,24 +13,38 @@ function theme_activation()
              `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
             PRIMARY KEY  (id)
           ) ENGINE=InnoDB");
+    $post = wp_insert_post([
+        'post_title' => 'Главная страница',
+        'post_type' => 'page',
+        'post_status' => 'publish',
+    ]);
+    update_option('show_on_front', 'page');
+    update_option('page_on_front', $post);
+    $json = file_get_contents(get_template_directory() . '/acf-json/group_683f53ee87a25.json');
+    $json = json_decode($json, true);
+    $json['location'] = [
+        [
+            [
+                'param' => 'page',
+                'operator' => '==',
+                'value' => (string)$post,
+            ]
+        ]
+    ];
+    file_put_contents(get_template_directory() . '/acf-json/group_683f53ee87a25.json', json_encode($json));
 }
 
-function theme_setup()
+//add_filter('acf/settings/save_json', 'acf_json_save_point');
+
+function acf_json_save_point($path)
 {
-    if (function_exists('acf_add_options_page')) {
-        acf_add_options_page(array(
-            'page_title' => 'Управление сайтом',
-            'menu_title' => 'Управление сайтом',
-            'menu_slug' => 'manager_site',
-            'capability' => 'edit_posts',
-            'icon_url' => '',
-            'redirect' => false,
-            'update_button' => 'Сохранить',
-        ));
-    }
+    // update path
+    $path = get_template_directory() . '/acf-json';
+
+    // return
+    return $path;
 }
 
-add_action('acf/init', 'theme_setup');
 function _scripts_and_styles()
 {
     wp_enqueue_style('style', get_template_directory_uri() . '/style.css', array(),
