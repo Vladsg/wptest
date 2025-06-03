@@ -1,0 +1,97 @@
+/*
+* Theme Name: Vladsg Theme
+* Theme URI: https:/t.me/VladsgTheWizard
+* Author: Vladsg
+*/
+*{
+    box-sizing: border-box;
+    font-family: 'Helvetica', Arial, serif;
+}
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.company_title{
+    text-align: center;
+    font-size: 75px;
+}
+.banner{
+    text-align: center;
+}
+.banner img{
+    max-width: 100%;
+}
+.page__title,.page__desc{
+    text-align: center;
+}
+.page__content{
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+.posts .posts__list{
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: repeat(5,1fr);
+}
+.posts .post__title{
+    margin: 5px 0;
+}
+.posts .post__card{
+    display: flex;
+    flex-direction: column;
+}
+.posts .post__card a{
+    text-decoration: none;
+    background: #ddd;
+    color: #000;
+    border-radius: 5px;
+    padding: 10px 40px;
+    margin-top: 10px;
+    text-align: center;
+}
+.posts .post__card p{
+    margin: 0;
+}
+.posts .posts__pagination{
+    display: flex;
+    justify-content: center;
+    column-gap: 25px;
+    margin-top: 25px;
+    font-weight: 700;
+}
+.posts .posts__pagination a {
+    text-decoration: none;
+    color: inherit;
+}
+.contacts form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+}
+.contacts input,.contacts textarea{
+    width: 100%;
+    background: #ddd;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    color: #000;
+}
+
+.contacts input::placeholder,.contacts textarea::placeholder{
+    opacity: 1;
+    color: #000;
+}
+.contacts button{
+    background: #ddd;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 35px;
+    cursor: pointer;
+}
+@media (max-width: 1023px) {
+    .posts .posts__list{
+        grid-template-columns: repeat(1,1fr);
+        row-gap: 20px;
+    }
+}
